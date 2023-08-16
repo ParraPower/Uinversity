@@ -1,0 +1,6 @@
+*/**/logs
+bin/debug
+obj
+Uinversity/bin
+*log.txt
+nlog.config
