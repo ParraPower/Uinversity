@@ -5,7 +5,8 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "uinversity": "StartDebugging"
-      }
+      },
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger"
     }
   }
 }

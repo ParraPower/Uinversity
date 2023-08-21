@@ -4,4 +4,4 @@ obj
 Uinversity/bin
 *log.txt
 nlog.config
-/.vs/University/v17
+.vs/*
