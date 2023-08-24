@@ -7,7 +7,6 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Uinversity/University.csproj", "Uinversity/"]
-COPY ["LoggerService/LoggerService.csproj", "LoggerService/"]
 RUN dotnet restore "Uinversity/University.csproj"
 COPY . .
 WORKDIR "/src/Uinversity"
