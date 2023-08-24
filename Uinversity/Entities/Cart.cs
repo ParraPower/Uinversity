@@ -1,4 +1,4 @@
-﻿namespace Uinversity.Entities
+﻿namespace University.Entities
 {
     public class Cart
     {

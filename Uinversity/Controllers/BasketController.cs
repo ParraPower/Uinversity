@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using Uinversity.Entities;
-using Uinversity.Interfaces;
+using University.Entities;
+using University.Interfaces;
 
-namespace Uinversity.Controllers
+namespace University.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]

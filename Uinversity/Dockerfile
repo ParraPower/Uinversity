@@ -6,18 +6,18 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Uinversity/Uinversity.csproj", "Uinversity/"]
+COPY ["Uinversity/University.csproj", "Uinversity/"]
 COPY ["LoggerService/LoggerService.csproj", "LoggerService/"]
-RUN dotnet restore "Uinversity/Uinversity.csproj"
+RUN dotnet restore "Uinversity/University.csproj"
 COPY . .
 WORKDIR "/src/Uinversity"
-RUN dotnet build "Uinversity.csproj" -c Release -o /app/build
+RUN dotnet build "University.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Uinversity.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "University.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENV ASPNETCORE_URLS=http://*:80
-ENTRYPOINT ["dotnet", "Uinversity.dll"]
+ENTRYPOINT ["dotnet", "University.dll"]

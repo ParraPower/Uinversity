@@ -1,6 +1,6 @@
 using NLog;
 using LoggerService.Extensions;
-using Uinversity.Extensions;
+using University.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

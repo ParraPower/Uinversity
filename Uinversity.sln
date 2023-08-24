@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uinversity", "Uinversity\Uinversity.csproj", "{9F9C5F75-0BF4-454D-8FEB-4CB63F6A4403}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University", "Uinversity\University.csproj", "{9F9C5F75-0BF4-454D-8FEB-4CB63F6A4403}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{1BE2161A-96A4-4AB2-B133-22733280BFEF}"
 EndProject

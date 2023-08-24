@@ -1,6 +1,6 @@
-﻿using Uinversity.Entities;
+﻿using University.Entities;
 
-namespace Uinversity.Interfaces
+namespace University.Interfaces
 {
     public interface IBasketRepository
     {

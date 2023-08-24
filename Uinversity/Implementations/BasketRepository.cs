@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using Uinversity.Entities;
-using Uinversity.Interfaces;
+using University.Entities;
+using University.Interfaces;
 
-namespace Uinversity.Implementations
+namespace University.Implementations
 {
     public class BasketRepository : IBasketRepository
     {

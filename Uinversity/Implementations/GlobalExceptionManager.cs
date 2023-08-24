@@ -2,7 +2,7 @@
 using LoggerService.Models;
 using System.Net;
 
-namespace Uinversity.Implementations
+namespace University.Implementations
 {
     public class GlobalExceptionManager : IExceptionManager
     {

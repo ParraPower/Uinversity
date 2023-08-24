@@ -1,4 +1,4 @@
-﻿namespace Uinversity.Models
+﻿namespace University.Models
 {
     public class RedisConfig
     {

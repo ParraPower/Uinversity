@@ -1,7 +1,7 @@
 using LoggerService.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Uinversity.Controllers
+namespace University.Controllers
 {
     [ApiController]
     [Route("[controller]")]

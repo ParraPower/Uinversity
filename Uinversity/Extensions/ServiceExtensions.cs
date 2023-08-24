@@ -1,10 +1,10 @@
 ﻿using LoggerService.Implementations;
 using LoggerService.Interfaces;
-using Uinversity.Implementations;
-using Uinversity.Interfaces;
-using Uinversity.Models;
+using University.Implementations;
+using University.Interfaces;
+using University.Models;
 
-namespace Uinversity.Extensions
+namespace University.Extensions
 {
     public static class ServiceExtensions
     {

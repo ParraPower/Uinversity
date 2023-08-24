@@ -1,4 +1,4 @@
-namespace Uinversity
+namespace University
 {
     public class WeatherForecast
     {

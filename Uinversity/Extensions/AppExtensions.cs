@@ -1,6 +1,6 @@
 ﻿using LoggerService.Middleware;
 
-namespace Uinversity.Extensions
+namespace University.Extensions
 {
     public static class AppExtensions
     {
