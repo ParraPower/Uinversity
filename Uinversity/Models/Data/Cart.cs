@@ -1,4 +1,4 @@
-﻿namespace University.Entities
+﻿namespace University.Models.Data
 {
     public class Cart
     {

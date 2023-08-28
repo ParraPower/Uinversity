@@ -1,8 +1,8 @@
-﻿namespace University.Models
+﻿namespace UniversityCore.Models.Config
 {
     public class RedisConfig
     {
-        public RedisConfig() 
+        public RedisConfig()
         {
             ServerName = "localhost";
             PortNumber = string.Empty;

@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using University.Entities;
 using University.Interfaces;
+using University.Models.Data;
 
 namespace University.Controllers
 {

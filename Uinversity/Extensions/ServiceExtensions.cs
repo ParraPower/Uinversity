@@ -1,13 +1,25 @@
-﻿using LoggerService.Implementations;
-using LoggerService.Interfaces;
+﻿using LoggerService.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using University.Implementations;
 using University.Interfaces;
-using University.Models;
+using UniversityCore.Models.Config;
+using UniversityData.Context;
 
 namespace University.Extensions
 {
     public static class ServiceExtensions
     {
+        public static void ConfigureDatabase(this IServiceCollection services, ConfigurationManager configuration) 
+        {
+            var sqlOptionsSection = configuration.GetSection("SqlOptions");
+
+            services.Configure<SqlOptions>(sqlOptionsSection);
+
+            var sqlOptions = sqlOptionsSection.Get<SqlOptions>();
+            services.AddDbContext<UniversityContext>(options =>
+                options.UseSqlServer(sqlOptions.ConnectionString));
+        }
+
         public static void ConfigureExceptionManager(this IServiceCollection services)
         {
             services.AddSingleton<IExceptionManager, GlobalExceptionManager>();

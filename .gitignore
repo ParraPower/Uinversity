@@ -1,5 +1,5 @@
 */**/logs
-bin/debug
+**/bin/debug
 obj
 Uinversity/bin
 *log.txt

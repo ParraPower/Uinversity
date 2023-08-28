@@ -1,4 +1,4 @@
-﻿namespace University.Entities
+﻿namespace University.Models.Data
 {
     public class CartItem
     {
@@ -8,6 +8,6 @@
         public string ProductId { get; set; }
 
         public string ProductName { get; set; }
-     
+
     }
 }

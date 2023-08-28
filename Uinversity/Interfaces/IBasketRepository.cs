@@ -1,4 +1,4 @@
-﻿using University.Entities;
+﻿using University.Models.Data;
 
 namespace University.Interfaces
 {

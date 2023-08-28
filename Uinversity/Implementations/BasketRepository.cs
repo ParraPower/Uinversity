@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using University.Entities;
 using University.Interfaces;
+using University.Models.Data;
 
 namespace University.Implementations
 {
