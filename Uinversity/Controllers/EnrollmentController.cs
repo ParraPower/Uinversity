@@ -20,8 +20,8 @@ namespace University.Controllers
         public async Task<ActionResult<CreateEnrollmentResponse>> CreateEnrollment([FromBody] Models.Facade.Enrollment enrollment)
         {
             var request = new CreateEnrollmentQuery(enrollment);
-            var response = await _mediator.Send(request);
-            return Ok(response);
+            var users = await _mediator.Send(request);
+            return Ok(users);
         }
     }
 }
