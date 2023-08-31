@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University", "Uinversity\Un
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{58DDAD57-F51A-4EAE-92CD-BA242FDDECFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityData", "UniversityData\UniversityData.csproj", "{64832433-8333-469E-8E28-6E73BC1D7663}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityData", "UniversityData\UniversityData.csproj", "{64832433-8333-469E-8E28-6E73BC1D7663}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityCore", "UniversityCore\UniversityCore.csproj", "{AF7ACBA4-F0BB-4D9B-A913-327B89321785}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityCore", "UniversityCore\UniversityCore.csproj", "{AF7ACBA4-F0BB-4D9B-A913-327B89321785}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

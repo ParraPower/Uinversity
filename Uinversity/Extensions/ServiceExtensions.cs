@@ -1,4 +1,5 @@
 ﻿using LoggerService.Interfaces;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using University.Implementations;
 using University.Interfaces;
@@ -38,6 +39,21 @@ namespace University.Extensions
         public static void ConfigureRepositories(this IServiceCollection services)
         {
             services.AddScoped<IBasketRepository, BasketRepository>();
+            services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
+        }
+
+        public static void ConfigureAutoMapper(this IServiceCollection services)
+        {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        }
+
+        public static void ConfigureMediatR(this IServiceCollection services)
+        {
+            // Register MediatR services
+            services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+            });
         }
     }
 }

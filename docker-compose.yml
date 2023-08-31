@@ -30,4 +30,6 @@ services:
       - database
     environment:
       - "SqlOptions__ConnectionString=Server=database,1433;Database=University;User Id=sa;Password=Pa@@w0rd2019; encrypt=False;"
+      - "Redis__ServerName=redis"
+      - "Redis__PortNumber=6379"
     

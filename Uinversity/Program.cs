@@ -1,6 +1,7 @@
 using NLog;
 using LoggerService.Extensions;
 using University.Extensions;
+using UniversityData.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,9 @@ builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureExceptionManager();
 builder.Services.ConfigureRedisCache(builder.Configuration);
 builder.Services.ConfigureDatabase(builder.Configuration);
+builder.Services.ConfigureDataManagers();
+builder.Services.ConfigureAutoMapper();
+builder.Services.ConfigureMediatR();
 builder.Services.ConfigureRepositories();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
