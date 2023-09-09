@@ -1,6 +1,10 @@
 ﻿using LoggerService.Interfaces;
+using LoggerService.Models;
+using LoggerService.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.Runtime.CompilerServices;
 using University.Implementations;
 using University.Interfaces;
 using UniversityCore.Models.Config;
@@ -10,6 +14,22 @@ namespace University.Extensions
 {
     public static class ServiceExtensions
     {
+        public static void ConfigureUniversityLoggerService(this IServiceCollection services, ConfigurationManager configuration)
+        {
+            var sqlOptionsSection = configuration.GetSection("SqlOptions");
+
+            var sqlOptions = sqlOptionsSection.Get<SqlOptions>();
+
+            var loggerOptions = new LoggerServiceOptions() { DatabaseConnectionString = sqlOptions.ConnectionString };
+
+            services.Configure<LoggerServiceOptions>((loggerOptionsInternal) => {
+                loggerOptionsInternal.DatabaseConnectionString = sqlOptions.ConnectionString;
+            });
+
+            LoggerService.Extensions.ServiceExtensions.ConfigureLoggerService(services, configuration);
+        }
+
+
         public static void ConfigureDatabase(this IServiceCollection services, ConfigurationManager configuration) 
         {
             var sqlOptionsSection = configuration.GetSection("SqlOptions");
@@ -34,6 +54,8 @@ namespace University.Extensions
             {
                 options.Configuration = $"{redisConfig.ServerName}:{redisConfig.PortNumber}";
             });
+            
+            services.AddSingleton<IDistributedCacheWrapper, DistributedCacheWrapper>();
         }
 
         public static void ConfigureRepositories(this IServiceCollection services)

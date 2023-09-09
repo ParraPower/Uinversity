@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using UniversityCore.Constants;
 
 namespace University.Mappings
 {
@@ -7,7 +8,7 @@ namespace University.Mappings
         public EnrollmentProfile()
         {
             CreateMap<Models.Facade.Enrollment, UniversityData.Entites.Enrollment>()
-                .ForMember((dest) => dest.EnrollmentID, opt => opt.MapFrom(src => src.EnrollmentID ?? int.MinValue))
+                .ForMember((dest) => dest.EnrollmentID, opt => opt.MapFrom(src => src.EnrollmentID ?? Constants.Zero))
                 .ReverseMap();
 
         }

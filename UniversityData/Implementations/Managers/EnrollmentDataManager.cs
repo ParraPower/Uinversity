@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using UniversityData.Context;
 using UniversityData.Entites;
 using UniversityData.Interfaces.Managers;
@@ -35,6 +31,11 @@ namespace UniversityData.Implementations.Managers
             }
 
             return response.Entity;
+        }
+
+        public async Task<Enrollment?> GetEnrollmentAsync(int enrollmentID)
+        {
+            return await _context.Enrollments.FirstOrDefaultAsync(e => e.EnrollmentID == enrollmentID);
         }
     }
 }

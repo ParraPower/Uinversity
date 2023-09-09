@@ -9,7 +9,7 @@ namespace University.Implementations
     public class EnrollmentRepository : IEnrollmentRepository
     {
         private const string ENROLLMENT_KEY_PREX = "enrollment_";
-        private readonly IDistributedCache _redisCache;
+        private readonly IDistributedCacheWrapper _cache;
         private static string GetKey(int enrollmentId)
         {
             return $"{ENROLLMENT_KEY_PREX}{enrollmentId}";
@@ -24,13 +24,13 @@ namespace University.Implementations
 
             return GetKey(enrollment.EnrollmentID.Value);
         }
-        public EnrollmentRepository(IDistributedCache cache)
+        public EnrollmentRepository(IDistributedCacheWrapper cache)
         {
-            _redisCache = cache ?? throw new ArgumentNullException(nameof(cache));
+            _cache = cache ?? throw new ArgumentNullException(nameof(cache));
         }
         public async Task<Enrollment?> GetEnrollment(int enrollmentId)
         {
-            var entity = await _redisCache.GetStringAsync(GetKey(enrollmentId));
+            var entity = await _cache.GetStringAsync(GetKey(enrollmentId));
             if (string.IsNullOrEmpty(entity))
                 return null;
             return JsonConvert.DeserializeObject<Enrollment>(entity);
@@ -43,12 +43,12 @@ namespace University.Implementations
                 throw new Exception("Enrollment Id is null");
             }
 
-            await _redisCache.SetStringAsync(GetKey(enrollment), JsonConvert.SerializeObject(enrollment));
+            await _cache.UpdateStringAsync(GetKey(enrollment), JsonConvert.SerializeObject(enrollment));
             return await GetEnrollment(enrollment.EnrollmentID.Value) ?? throw new Exception("Unable to insert/update enrollment");
         }
         public async Task DeleteEnrollment(int enrollmentId)
         {
-            await _redisCache.RemoveAsync(GetKey(enrollmentId));
+            await _cache.RemoveAsync(GetKey(enrollmentId));
         }
     }
 }

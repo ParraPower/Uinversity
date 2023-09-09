@@ -1,19 +1,16 @@
-using NLog;
 using LoggerService.Extensions;
 using University.Extensions;
 using UniversityData.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
-
 //builder.WebHost.UseUrls(new[] { "http://0.0.0.0:5041" });
 
 // Add services to the container.
-builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureExceptionManager();
 builder.Services.ConfigureRedisCache(builder.Configuration);
 builder.Services.ConfigureDatabase(builder.Configuration);
+builder.Services.ConfigureUniversityLoggerService(builder.Configuration);
 builder.Services.ConfigureDataManagers();
 builder.Services.ConfigureAutoMapper();
 builder.Services.ConfigureMediatR();
