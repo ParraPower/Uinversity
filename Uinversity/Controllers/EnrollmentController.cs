@@ -29,8 +29,8 @@ namespace University.Controllers
         public async Task<ActionResult<CreateEnrollmentResponse>> CreateEnrollment([FromBody] Models.Facade.Enrollment enrollment)
         {
             var request = new CreateEnrollmentQuery(enrollment);
-            var updatedeEnrollment = await _mediator.Send(request);
-            return Ok(updatedeEnrollment);
+            var updatedEnrollment = await _mediator.Send(request);
+            return Ok(updatedEnrollment);
         }
     }
 }

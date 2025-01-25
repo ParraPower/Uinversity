@@ -19,7 +19,7 @@ namespace University.Commands.Enrollment
         }
     }
 
-    public record class GetEnrollmentResponse(Models.Facade.Enrollment? Enrollment);
+    public record class GetEnrollmentResponse(Models.Facade.Enrollment Enrollment);
 
     public class GetEnrollmentCommand : IRequestHandler<GetEnrollmentQuery, GetEnrollmentResponse>, ICommandValidatorLogic<GetEnrollmentQuery>
     {

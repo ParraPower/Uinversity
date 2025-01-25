@@ -1,12 +1,13 @@
-using LoggerService.Extensions;
 using University.Extensions;
 using UniversityData.Extensions;
+using EventBusModule.DI;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //builder.WebHost.UseUrls(new[] { "http://0.0.0.0:5041" });
 
 // Add services to the container.
+builder.Services.EventBusModuleDIAdd();
 builder.Services.ConfigureExceptionManager();
 builder.Services.ConfigureRedisCache(builder.Configuration);
 builder.Services.ConfigureDatabase(builder.Configuration);

@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EventBusModule\EventBusModule.csproj" />
     <ProjectReference Include="..\UniversityCore\UniversityCore.csproj" />
     <ProjectReference Include="..\UniversityData\UniversityData.csproj" />
   </ItemGroup>

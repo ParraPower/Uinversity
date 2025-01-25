@@ -7,6 +7,8 @@ using University.Implementations;
 using University.Interfaces;
 using University.Models.Validation;
 using UniversityData.Interfaces.Managers;
+using EventBusModule.NotificationService;
+using SDK.EventBus.Events;
 
 namespace University.Commands.Enrollment
 {
@@ -27,11 +29,13 @@ namespace University.Commands.Enrollment
         private readonly IEnrollmentDataManager _dataManager;
         private readonly IEnrollmentRepository _dataRepository;
         private readonly IMapper _mapper;
+        private readonly INotificationService _notificationService;
 
-        public CreateEnrollmentCommand(IMapper mapper, IEnrollmentDataManager enrollmentDataManager, IEnrollmentRepository enrollmentRepository)
+        public CreateEnrollmentCommand(IMapper mapper, IEnrollmentDataManager enrollmentDataManager, IEnrollmentRepository enrollmentRepository, INotificationService notificationService)
         {
             _dataManager = enrollmentDataManager;
             _dataRepository = enrollmentRepository;
+            _notificationService = notificationService;
             _mapper = mapper;
         }
 
@@ -46,6 +50,12 @@ namespace University.Commands.Enrollment
             var responseFacade = (Models.Facade.Enrollment)_mapper.Map(response, typeof(UniversityData.Entites.Enrollment), typeof(Models.Facade.Enrollment));
 
             await _dataRepository.UpdateEnrollment(responseFacade);
+
+            var eventMessage =
+            StudentActitvityEventMessageFactory.Generate(
+                "1.1", "CreateEnrollment", Guid.NewGuid(), StudentActitvityEventType.Enrolled, request.Enrollment.StudentID, 1);
+
+            await _notificationService.SendMessage(eventMessage);
 
             return new CreateEnrollmentResponse(response.EnrollmentID, response.CourseID, response.StudentID);
         }
