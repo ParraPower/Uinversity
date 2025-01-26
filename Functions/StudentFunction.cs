@@ -2,16 +2,13 @@
 // http://localhost:7071/runtime/webhooks/EventGrid?functionName={functionname}
 
 using Azure.Messaging;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.WebJobs.Extensions.SignalRService;
-using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Azure.Storage.Queues.Models;
+using SDK.EventBus.Events;
 
 namespace Functions
 {
@@ -31,25 +28,33 @@ namespace Functions
 
         [Function(nameof(StudentFunction))]
         //[QueueOutput("eventqueue", Connection = EventQueueConnectionString)]
-        public async Task Run([EventGridTrigger] CloudEvent cloudEvent
+        public async Task<string> Run([EventGridTrigger] CloudEvent cloudEvent
             )
         {
             _logger.LogInformation("Event type: {type}, Event subject: {subject}", cloudEvent.Type, cloudEvent.Subject);
 
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
-            string requestBody = await new StreamReader(cloudEvent.Data.ToStream()).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            string message = data?.message;
-
-            if (string.IsNullOrEmpty(message))
+            if (cloudEvent.Data != null)
             {
-                throw new ArgumentException("Please pass a message in the request body");
+                var t = cloudEvent.Data.ToString();
+                _logger.LogInformation("Event t: {t}", t);
             }
 
-            _logger.LogInformation($"Message '{message}' has been added to the queue.");
+            try
+            {
+                string requestBody = await new StreamReader(cloudEvent.Data.ToStream()).ReadToEndAsync();
+                var data = SDK.EventBus.Serialization.DeserializeHelper.Convert(requestBody);
 
-           // return message;
+                _logger.LogInformation($"Message '{requestBody}' has been added to the queue.");
+
+                return requestBody;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Message}", ex.Message);
+                throw new InvalidProgramException();
+            }
         }
 
         //[FunctionName("negotiate")]

@@ -5,3 +5,6 @@ Uinversity/bin
 *log.txt
 nlog.config
 .vs/*
+.vs
+**/bin/release
+Functions/Properties/

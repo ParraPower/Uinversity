@@ -8,7 +8,7 @@ namespace Functions
     {
         static void Main(string[] args)
         {
-            FunctionsDebugger.Enable();
+            //FunctionsDebugger.Enable();
 
             var host = new HostBuilder()
                 .ConfigureFunctionsWorkerDefaults()
