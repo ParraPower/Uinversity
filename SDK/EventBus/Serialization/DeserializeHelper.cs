@@ -1,12 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SDK.EventBus.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace SDK.EventBus.Serialization
 {
@@ -17,9 +11,12 @@ namespace SDK.EventBus.Serialization
             if (string.IsNullOrWhiteSpace(body))
                 throw new ArgumentNullException();
 
-            var obj = JsonConvert.DeserializeObject<JObject>(body);
-            int.TryParse(obj?.Property("Type")?.Value.ToString(), out int type); //?? throw new ArgumentNullException("Type field not found") ?? new ArgumentNullException("object passed in not in correct format");
-            
+            var jObj = JsonConvert.DeserializeObject(body);
+
+            var typeStr = (jObj as JObject).Property("Type").Value.ToString();
+
+            int.TryParse(typeStr, out var type);
+
             switch ((EvenetMessageType)type)
             {
                 case EvenetMessageType.StudentActivity:
